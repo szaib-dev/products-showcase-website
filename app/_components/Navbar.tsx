@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { GoPerson } from "react-icons/go";
 import { VscThreeBars } from "react-icons/vsc";
+import { ArrowRight } from "lucide-react"; // Added ArrowRight for hover effect
 import {
   FiSearch,
   FiX,
@@ -36,6 +37,7 @@ function Navbar() {
   // Search products
   useEffect(() => {
     if (searchQuery.trim() === "") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSearchResults([]);
       return;
     }
@@ -349,56 +351,109 @@ function Sidebar({
   setIsSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   isSidebar: boolean;
 }) {
-  const links = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/products", label: "Products" },
-    { href: "/contact", label: "Contact" },
-    { href: "/faq", label: "FAQ" },
-  ];
+ const menuCategories = [
+  {
+    title: "Discover",
+    items: [
+      { href: "/", label: "Home" },
+      { href: "/products", label: "All Products" },
+      { href: "/about", label: "Our Story" },
+    ]
+  },
+  {
+    title: "Business",
+    items: [
+      { href: "/trade-form", label: "Trade Application", highlight: true },
+    ]
+  },
+  {
+    title: "Support",
+    items: [
+      { href: "/contact", label: "Contact Us" },
+      { href: "/faq", label: "Help Center" },
+    ]
+  },
+  {
+    title: "Legal",
+    items: [
+      { href: "/privacy", label: "Privacy Policy" },
+      { href: "/terms", label: "Terms of Service" },
+    ]
+  }
+];
 
   return (
-   <aside
+  <aside
   className={cn(
-    "top-0 right-0 h-[400px] transform absolute z-30 transition-all duration-300 w-full bg-primary px-3",
+    "top-0 right-0 h-screen fixed z-50 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] w-full bg-primary px-6 overflow-hidden",
     isSidebar ? "translate-y-0" : "-translate-y-full"
   )}
 >
-  <div className="max-w-[1300px] mx-auto w-full py-10 flex flex-col gap-8">
-    <div className="w-full flex justify-between items-center">
+  <div className="max-w-[1300px] mx-auto w-full py-10 flex flex-col h-full">
+    
+    {/* --- Header Section (Kept Exact) --- */}
+    <div className="w-full flex justify-between items-center mb-12 shrink-0">
       <Link
         href="/"
-        className="text-3xl md:text-5xl lg:text-7xl text-white font-semibold font-montserrat"
+        className="text-3xl md:text-5xl lg:text-7xl text-white font-semibold font-montserrat tracking-tight"
+        onClick={() => setIsSidebar(false)}
       >
         MegaMart.
       </Link>
 
       <button
         onClick={() => setIsSidebar(false)}
-        className="size-10 hover:bg-white transition-all cursor-pointer group duration-150 border border-white rounded-full flex justify-center items-center"
+        className="size-12 hover:bg-white hover:text-primary transition-all cursor-pointer group duration-200 border border-white rounded-full flex justify-center items-center shrink-0"
       >
-        <X className="text-white group-hover:text-primary" />
+        <X className="text-white group-hover:text-primary size-6" />
       </button>
     </div>
 
-    <div className="flex flex-col gap-2 md:gap-3 mt-5">
-      {[
-        { href: "/", label: "Home" },
-        { href: "/about", label: "About" },
-        { href: "/products", label: "Products" },
-        { href: "/contact", label: "Contact" },
-        { href: "/faq", label: "FAQ" },
-      ].map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          onClick={() => setIsSidebar(false)}
-          className="text-xl md:text-2xl  text-white font-inter font-light hover:underline w-fit"
-        >
-          {link.label}
-        </Link>
-      ))}
+    {/* --- Modern Categorized Navigation --- */}
+    <div className="flex-1 overflow-y-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 pb-10">
+        {menuCategories.map((category, idx) => (
+          <div key={idx} className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700" style={{ animationDelay: `${idx * 100}ms` }}>
+            
+            {/* Category Title */}
+            <h3 className="text-sky-200/60 uppercase tracking-[0.2em] text-xs font-bold font-inter">
+              {category.title}
+            </h3>
+
+            {/* Links */}
+            <div className="flex flex-col gap-4">
+              {category.items.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsSidebar(false)}
+                  className="group flex items-center gap-2 w-fit"
+                >
+                  <span 
+                    className={cn(
+                      "text-2xl md:text-3xl font-inter font-light transition-all duration-300 group-hover:translate-x-2",
+                       "text-white/90 group-hover:text-white"
+                    )}
+                  >
+                    {link.label}
+                  </span>
+                  {/* Subtle hover arrow */}
+                  <ArrowRight className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-2 text-white transition-all duration-300 size-5 mt-1" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
+
+    {/* --- Decorative Background Element (Optional "Super Cool" touch) --- */}
+    <div className="absolute bottom-0 right-0 pointer-events-none opacity-5 select-none">
+      <span className="text-[20vw] font-bold text-white leading-none tracking-tighter">
+        MENU
+      </span>
+    </div>
+
   </div>
 </aside>
   );

@@ -30,7 +30,7 @@ export default function ContactPage() {
             With Our Team
           </h1>
           <p className="text-xl text-sky-100/80 max-w-2xl leading-relaxed">
-            Have questions about our products or services? We're here to help
+            Have questions about our products or services? We&apos;re here to help
             and respond within 24 hours.
           </p>
         </div>
@@ -100,7 +100,7 @@ export default function ContactPage() {
                       Send us a Message
                     </h2>
                     <p className="text-gray-500 text-sm">
-                      Fill the form below and we'll get back to you
+                      Fill the form below and we&apos;ll get back to you
                     </p>
                   </div>
                 </div>

@@ -1,47 +1,73 @@
+import React from "react";
 import Crausal from "./_components/Crausal";
+import Features from "./_components/Hero"; // Renaming to BrandFeatures for clarity is recommended
 import GridHeader from "@/components/Layout/GridHeader";
 import GridCircle from "@/components/Layout/GridCircle";
-import { CATEGORIES, PRODUCTS, PRODUCTS_LIST } from "@/constants";
 import GridRoundSquare from "@/components/Layout/GridRoudSquare";
 import Grid2Images from "@/components/Layout/Grid2Images";
-import Features from "./_components/Hero";
+import { CATEGORIES, PRODUCTS, PRODUCTS_LIST } from "@/constants";
 
 export default function Home() {
   return (
-    <div className=" flex flex-col w-full gap-7 md:gap-12 mx-auto w-full">
-      <div className="max-w-[1200px] mx-auto w-full">
-        <Crausal />
-      </div>
-      <div className="flex w-full flex-col px-3 gap-5 max-w-[1200px] mx-auto w-full">
-        <GridHeader
-          title="Shop by"
-          highlight="Categories"
-          link="/smartphone"
-        />
-        <GridCircle categories={CATEGORIES} />
-      </div>
-      <div className="flex w-full flex-col px-3 gap-5  max-w-[1200px] mx-auto w-full">
-        <GridHeader
-          title="Grab the best deal on"
-          highlight="Smartphone"
-          link="/smartphone"
-        />
-        <GridRoundSquare products={PRODUCTS_LIST} />
-      </div>
-      <div className=" max-w-[1200px] px-3 mx-auto w-full ">
-        <Grid2Images />
-      </div>
+    <main className="min-h-screen bg-gray-50 font-sans text-gray-900 pb-20">
+      
+      {/* 1. Hero Section (White bg for contrast) */}
+      <section className=" pt-4 pb-8  mb-12">
+        <div className="max-w-[1300px] mx-auto px-4 w-full">
+          <Crausal />
+        </div>
+      </section>
 
-      <Features />
+      {/* Main Content Wrapper */}
+      <div className="flex flex-col gap-16 md:gap-24">
+        
+        {/* 2. Categories */}
+        <section className="max-w-[1300px] mx-auto px-4 w-full">
+          <GridHeader
+            title="Shop by"
+            highlight="Categories"
+            link="/categories"
+          />
+          <div className="mt-6">
+            <GridCircle categories={CATEGORIES} />
+          </div>
+        </section>
 
-      <div className="flex w-full flex-col gap-5 max-w-[1200px] mx-auto w-full ">
-        <GridHeader
-          title="Find the best products"
-          highlight="Special"
-          link="/products"
-        />
-        <GridRoundSquare products={PRODUCTS} />
+        {/* 3. Smartphone Deals */}
+        <section className="max-w-[1300px] mx-auto px-4 w-full">
+          <GridHeader
+            title="Grab the best deal on"
+            highlight="Smartphone"
+            link="/smartphone"
+          />
+          <div className="mt-6">
+            <GridRoundSquare products={PRODUCTS_LIST} />
+          </div>
+        </section>
+
+        {/* 4. Promotional Banners */}
+        <section className="max-w-[1300px] mx-auto px-4 w-full">
+          <Grid2Images />
+        </section>
+
+        {/* 5. Brand Features (Full Width) */}
+        <section className="w-full">
+          <Features />
+        </section>
+
+        {/* 6. Special Products */}
+        <section className="max-w-[1300px] mx-auto px-4 w-full">
+          <GridHeader
+            title="Find the best products"
+            highlight="Special"
+            link="/products"
+          />
+          <div className="mt-6">
+            <GridRoundSquare products={PRODUCTS} />
+          </div>
+        </section>
+
       </div>
-    </div>
+    </main>
   );
 }

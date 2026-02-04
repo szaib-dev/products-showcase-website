@@ -38,7 +38,7 @@ export default function AboutPage() {
                 From a Garage to Global
               </h2>
               <p className="text-gray-600 leading-relaxed">
-                Founded in 2024, MegaMart started with a simple mission: to make high-quality essentials accessible to everyone. We believed that "premium" shouldn't mean "exclusive."
+                Founded in 2024, MegaMart started with a simple mission: to make high-quality essentials accessible to everyone. We believed that &quot;premium&quot; shouldn&apos;t mean &quot;exclusive.&quot;
               </p>
               <p className="text-gray-600 leading-relaxed">
                 Today, we serve customers in over 30 countries, partnering with ethical manufacturers to bring you everything from automotive essentials to personal care—without the markup.

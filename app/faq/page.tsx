@@ -222,9 +222,9 @@ export default function FAQPage() {
                   <span className="font-semibold text-white">
                     {filteredFaqs.length}
                   </span>{" "}
-                  {filteredFaqs.length === 1 ? "result" : "results"} for "
+                  {filteredFaqs.length === 1 ? "result" : "results"} for &quot;
                   <span className="font-semibold text-white">{searchQuery}</span>
-                  "
+                  &quot;
                 </div>
               )}
             </div>
@@ -387,7 +387,7 @@ export default function FAQPage() {
                   No results found
                 </h3>
                 <p className="text-gray-500 text-sm mb-4">
-                  We couldn't find any questions matching "{searchQuery}"
+                  We couldn&apos;t find any questions matching &quot;{searchQuery}&quot;
                 </p>
                 <button
                   onClick={clearSearch}
@@ -413,7 +413,7 @@ export default function FAQPage() {
                 Still Have Questions?
               </h2>
               <p className="text-gray-600">
-                Can't find the answer you're looking for? Our support team is
+                Can&apos;t find the answer you&apos;re looking for? Our support team is
                 here to help you with any questions.
               </p>
             </div>

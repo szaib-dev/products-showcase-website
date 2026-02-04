@@ -19,7 +19,7 @@ export default function NotFound() {
           Page Under Maintenance
         </h2>
         <p className="text-gray-500 mb-8 leading-relaxed">
-          We're currently working on this page to bring you something amazing.
+          We&apos;re currently working on this page to bring you something amazing.
           Please check back soon!
         </p>
 
