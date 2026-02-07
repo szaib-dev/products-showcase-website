@@ -9,7 +9,7 @@ function CategoryGrid({ categories }: { categories: Category[] }) {
       <div className="flex flex-wrap justify-center gap-6 md:gap-8">
         {categories.map((category, index) => (
           <Link
-            href={`/${category.id}`}
+            href={`/product?category=${category.id}`}
             key={index}
             className="group flex flex-col items-center gap-3 w-20 md:w-28 transition-transform hover:-translate-y-1 duration-300"
           >

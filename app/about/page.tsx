@@ -14,7 +14,7 @@ export default function AboutPage() {
 
         <div className="container mx-auto px-4 relative z-10 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-            We Are <span className="text-[#0EA5E9]">MegaMart.</span>
+            We Are <span className="text-[#0EA5E9]">Avelon MFG LLC.</span>
           </h1>
           <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Bridging the gap between premium quality and everyday accessibility. 
@@ -38,7 +38,7 @@ export default function AboutPage() {
                 From a Garage to Global
               </h2>
               <p className="text-gray-600 leading-relaxed">
-                Founded in 2024, MegaMart started with a simple mission: to make high-quality essentials accessible to everyone. We believed that &quot;premium&quot; shouldn&apos;t mean &quot;exclusive.&quot;
+                Founded in 2024, Avelon MFG LLC started with a simple mission: to make high-quality essentials accessible to everyone. We believed that &quot;premium&quot; shouldn&apos;t mean &quot;exclusive.&quot;
               </p>
               <p className="text-gray-600 leading-relaxed">
                 Today, we serve customers in over 30 countries, partnering with ethical manufacturers to bring you everything from automotive essentials to personal care—without the markup.
@@ -103,7 +103,7 @@ export default function AboutPage() {
           <div className="relative z-10">
             <h2 className="text-3xl font-bold text-white mb-4">Ready to experience quality?</h2>
             <p className="text-sky-100 mb-8 max-w-lg mx-auto">
-              Join thousands of satisfied customers who have upgraded their lifestyle with MegaMart.
+              Join thousands of satisfied customers who have upgraded their lifestyle with Avelon MFG LLC.
             </p>
             <Link href={"/product"} className="bg-[#0EA5E9] hover:bg-sky-400 text-white font-bold py-4 px-8 rounded-lg transition-all shadow-lg hover:shadow-sky-500/30 flex items-center justify-center gap-2 mx-auto">
               Explore Products <ArrowRight className="w-5 h-5" />
@@ -121,7 +121,7 @@ export default function AboutPage() {
       {/* SIMPLE FOOTER */}
       <footer className="bg-white border-t border-gray-200 py-12 text-center">
         <p className="text-gray-500 text-sm">
-          &copy; {new Date().getFullYear()} MegaMart Inc. Built for performance.
+          &copy; {new Date().getFullYear()} Avelon MFG LLC. Built for performance.
         </p>
       </footer>
 

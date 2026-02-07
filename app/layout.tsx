@@ -3,7 +3,7 @@ import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
-
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,16 +15,16 @@ const montserrat = Montserrat({
   style: "normal",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
-  variable: "--font-montserrat"
-})
+  variable: "--font-montserrat",
+});
 
 const inter = Inter({
   display: "swap",
   style: "normal",
   subsets: ["latin"],
-  weight: ["200","300", "500", "600",],
-  variable: "--font-inter"
-})
+  weight: ["200", "300", "500", "600"],
+  variable: "--font-inter",
+});
 
 export default function RootLayout({
   children,
@@ -36,9 +36,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${montserrat.variable}  mx-auto antialiased font-inter bg-black`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <ClerkProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ClerkProvider>
       </body>
     </html>
   );

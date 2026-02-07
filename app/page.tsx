@@ -26,7 +26,7 @@ export default function Home() {
           <GridHeader
             title="Shop by"
             highlight="Categories"
-            link="/categories"
+            link="/product"
           />
           <div className="mt-6">
             <GridCircle categories={CATEGORIES} />
@@ -38,7 +38,7 @@ export default function Home() {
           <GridHeader
             title="Grab the best deal on"
             highlight="Smartphone"
-            link="/smartphone"
+            link="/product"
           />
           <div className="mt-6">
             <GridRoundSquare products={PRODUCTS_LIST} />
@@ -58,8 +58,8 @@ export default function Home() {
         {/* 6. Special Products */}
         <section className="max-w-[1300px] mx-auto px-4 w-full">
           <GridHeader
-            title="Find the best products"
-            highlight="Special"
+            title="Find the best"
+            highlight="Products"
             link="/products"
           />
           <div className="mt-6">

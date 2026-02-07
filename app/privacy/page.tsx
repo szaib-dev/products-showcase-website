@@ -38,7 +38,7 @@ export default function PrivacyPage() {
               Privacy <span className="text-[#0EA5E9]">Policy</span>
             </h1>
             <p className="text-lg text-gray-300 leading-relaxed max-w-xl">
-              Transparency is at the core of MegaMart. We believe you have a right to know exactly how your data is handled, secured, and used.
+              Transparency is at the core of Avelon MFG LLC. We believe you have a right to know exactly how your data is handled, secured, and used.
             </p>
           </div>
         </div>
@@ -205,7 +205,7 @@ export default function PrivacyPage() {
                   <p className="text-gray-500">Our Data Protection Officer is here to help.</p>
                 </div>
                 <Link 
-                  href="mailto:privacy@megamart.com"
+                  href="mailto:privacy@avelon_mfg_llc"
                   className="group flex items-center gap-3 bg-white border border-gray-200 hover:border-[#0EA5E9] hover:text-[#0EA5E9] text-gray-700 px-6 py-4 rounded-xl font-semibold transition-all shadow-sm hover:shadow-md"
                 >
                   <Mail className="size-5" />

@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo";
 import Link from "next/link";
 import React from "react";
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa6";
@@ -9,12 +10,9 @@ function Footer() {
         
         {/* 1. Brand Section */}
         <div className="flex flex-col gap-4">
-          <Link
-            href="/"
-            className="text-white text-3xl md:text-4xl font-montserrat font-bold tracking-tight"
-          >
-            MegaMart.
-          </Link>
+         <div className="w-20 h-14">
+              <Logo />
+            </div>
           <p className="text-sm font-inter text-gray-300 leading-relaxed max-w-[280px]">
             Your one-stop destination for premium products. Quality, speed, and reliability tailored for modern shopping.
           </p>
@@ -85,7 +83,7 @@ function Footer() {
 
       {/* Copyright Bar */}
       <div className="max-w-[1200px] mx-auto w-full mt-12 pt-8 border-t border-white/10 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-gray-400">
-        <p>&copy; {new Date().getFullYear()} MegaMart. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Avelon MFG LLC. All rights reserved.</p>
         <div className="flex gap-6">
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>

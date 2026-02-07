@@ -50,7 +50,7 @@ export default function ContactPage() {
               {
                 icon: FiMail,
                 title: "Email Us",
-                info: "support@megamart.com",
+                info: "support@avelon_mfg_llc",
                 sub: "We reply within 24hrs",
               },
               {
