@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 'use client';
 
+import emailjs from '@emailjs/browser';
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { 
   Building2, 
@@ -44,7 +45,8 @@ export default function TradeFormPage() {
   // --- State Management ---
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [agreedTerms, setAgreedTerms] = useState<number[]>([]);
-  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [formData, setFormData] = useState({
     email: '',
     phone: '',
@@ -122,16 +124,58 @@ export default function TradeFormPage() {
     }
   };
 
-  const handleFinalConfirm = () => {
-    console.log('--- FINAL SUBMISSION LOG ---');
-    console.log({
-      ...formData,
-      termsAccepted: true,
+ 
+const handleFinalConfirm = async () => {
+  setIsSubmitting(true);
+  
+  try {
+    // Prepare email data matching your template variables
+    const emailData = {
+      companyName: formData.companyName,
+      dba: formData.dba || 'N/A',
+      storeName: formData.storeName || 'N/A',
+      businessType: formData.businessType,
+      businessNature: formData.businessNature,
+      regYear: formData.regYear,
+      contactName: formData.contactName,
+      email: formData.email,
+      phone: formData.phone,
+      whatsapp: formData.whatsapp || 'N/A',
+      websiteUrl: formData.websiteUrl || 'N/A',
+      regAddress: formData.regAddress,
+      shipAddress: formData.shipAddress,
+      shippingType: formData.shippingType,
+      monthlyVolume: formData.monthlyVolume,
+      salesChannels: formData.salesChannels.join(', '),
+      additionalComments: formData.additionalComments || 'None',
+      date: formData.date,
+      'declarations.accurate': formData.declarations.accurate ? 'Yes' : 'No',
+      'declarations.policies': formData.declarations.policies ? 'Yes' : 'No',
+      'declarations.verification': formData.declarations.verification ? 'Yes' : 'No',
+      termsAccepted: 'Yes',
       termsTimestamp: new Date().toISOString()
-    });
-    alert('Application & Terms Signed Successfully! Check Console.');
+    };
+
+    await emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+      emailData,
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+    );
+
+    alert('Application submitted successfully! Check your email.');
     setIsModalOpen(false);
-  };
+    
+    // Reset form if needed
+    // setFormData({ initial state });
+    
+  } catch (error) {
+    console.error('Email send failed:', error);
+    alert('Failed to submit. Please try again.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const isAllChannelsSelected = formData.salesChannels.length === SALES_CHANNELS_OPTIONS.length;
   const isAllTermsAgreed = agreedTerms.length === TERMS_AND_CONDITIONS.length;

@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -38,6 +39,7 @@ export default function RootLayout({
       >
         <ClerkProvider>
           <Navbar />
+          <Toaster position="top-right" />
           {children}
           <Footer />
         </ClerkProvider>
