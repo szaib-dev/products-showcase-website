@@ -13,6 +13,15 @@ const nextConfig: NextConfig = {
       },{
         hostname: "media.istockphoto.com",
         protocol: "https"
+      },{
+        hostname: "www.affirmadistributors.us",
+        protocol: "https"
+      },{
+        hostname: "cdn-icons-png.flaticon.com",
+        protocol: "https"
+      },{
+        hostname: "cdn.shopify.com",
+        protocol: "https"
       }
     ]
   }
