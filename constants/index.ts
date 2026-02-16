@@ -64,194 +64,7 @@ export const CAROUSAL_ITEMS: Carousal[] = [
 
 export const PRODUCTS: Product[] = [
   // Toys & Games
-  { 
-    id: 'p1', 
-    categoryId: 'cat1', 
-    name: 'Giant Plush Teddy Bear', 
-    cPrice: 45, 
-    dPrice: 60, 
-    description: 'Soft and cuddly companion for kids.', 
-    images: ['https://plus.unsplash.com/premium_photo-1702830272114-5432fd35c414?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
-  },
-  { 
-    id: 'p2', 
-    categoryId: 'cat1', 
-    name: 'Remote Control Car', 
-    cPrice: 30, 
-    dPrice: 40, 
-    description: 'High-speed RC car with 2.4GHz control.', 
-    images: ['https://images.unsplash.com/photo-1532911557891-d12f6b98dddc?q=80&w=800'] 
-  },
-  { 
-    id: 'p3', 
-    categoryId: 'cat1', 
-    name: 'LEGO Building Set', 
-    cPrice: 85, 
-    dPrice: 100, 
-    description: 'Creative building blocks for all ages.', 
-    images: ['https://images.unsplash.com/photo-1560343776-97e7d202ff0e?q=80&w=800'] 
-  },
-  { 
-    id: 'p4', 
-    categoryId: 'cat1', 
-    name: 'Strategy Board Game', 
-    cPrice: 25, 
-    dPrice: 35, 
-    description: 'Challenging multiplayer strategy game.', 
-    images: ['https://images.unsplash.com/photo-1611195974226-a6a9be9dd763?q=80&w=800'] 
-  },
   
-  // Home & Kitchen
-  { 
-    id: 'p5', 
-    categoryId: 'cat2', 
-    name: 'Stainless Steel Knife Set', 
-    cPrice: 120, 
-    dPrice: 150, 
-    description: 'Professional grade kitchen knives.', 
-    images: ['https://images.unsplash.com/photo-1593618998160-e34014e67546?q=80&w=800'] 
-  },
-  { 
-    id: 'p6', 
-    categoryId: 'cat2', 
-    name: 'Non-Stick Frying Pan', 
-    cPrice: 45, 
-    dPrice: 55, 
-    description: 'Eco-friendly non-stick coating.', 
-    images: ['https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?q=80&w=800'] 
-  },
-  { 
-    id: 'p7', 
-    categoryId: 'cat2', 
-    name: 'Electric Coffee Maker', 
-    cPrice: 90, 
-    dPrice: 110, 
-    description: 'Programmable drip coffee machine.', 
-    images: ['https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800'] 
-  },
-  { 
-    id: 'p8', 
-    categoryId: 'cat2', 
-    name: 'Mixing Bowl Set', 
-    cPrice: 20, 
-    dPrice: 30, 
-    description: 'Set of 5 nesting stainless steel bowls.', 
-    images: ['https://images.unsplash.com/photo-1686472950413-9647efea07d5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
-  },
-  
-  // Beauty & Personal Care
-  { 
-    id: 'p9', 
-    categoryId: 'cat3', 
-    name: 'Hydrating Face Serum', 
-    cPrice: 25, 
-    dPrice: 35, 
-    description: 'Hyaluronic acid for glowing skin.', 
-    images: ['https://plus.unsplash.com/premium_photo-1764599500228-4f617bc70cc3?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
-  },
-  { 
-    id: 'p10', 
-    categoryId: 'cat3', 
-    name: 'Matte Liquid Lipstick', 
-    cPrice: 15, 
-    dPrice: 20, 
-    description: 'Long-lasting vibrant lip color.', 
-    images: ['https://images.unsplash.com/photo-1752327091756-b24f2764b653?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
-  },
-  { 
-    id: 'p11', 
-    categoryId: 'cat3', 
-    name: 'Sandalwood Body Wash', 
-    cPrice: 12, 
-    dPrice: 18, 
-    description: 'Refreshing organic body wash.', 
-    images: ['https://images.unsplash.com/photo-1669212408959-fdde3b2ed6a2?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
-  },
-  { 
-    id: 'p12', 
-    categoryId: 'cat3', 
-    name: 'Professional Hair Dryer', 
-    cPrice: 65, 
-    dPrice: 80, 
-    description: 'Ionic technology for frizz-free hair.', 
-    images: ['https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=800'] 
-  },
-
-  // Automotive
-  { 
-    id: 'p13', 
-    categoryId: 'cat4', 
-    name: 'Performance Engine Oil', 
-    cPrice: 40, 
-    dPrice: 50, 
-    description: 'Full synthetic oil for modern engines.', 
-    images: ['https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=800'] 
-  },
-  { 
-    id: 'p14', 
-    categoryId: 'cat4', 
-    name: 'Portable Car Vacuum', 
-    cPrice: 35, 
-    dPrice: 45, 
-    description: 'Powerful suction for vehicle interiors.', 
-    images: ['https://images.unsplash.com/photo-1768387666361-0d2319d716e9?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
-  },
-  { 
-    id: 'p15', 
-    categoryId: 'cat4', 
-    name: 'Leather Seat Covers', 
-    cPrice: 150, 
-    dPrice: 200, 
-    description: 'Universal fit premium leather protectors.', 
-    images: ['https://images.unsplash.com/photo-1564842505181-8862a3b9b173?q=80&w=1168&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
-  },
-  { 
-    id: 'p16', 
-    categoryId: 'cat4', 
-    name: 'Dashboard Camera', 
-    cPrice: 80, 
-    dPrice: 110, 
-    description: '4K resolution with night vision.', 
-    images: ['https://images.unsplash.com/photo-1593642702749-b7d2a804fbcf?q=80&w=800'] 
-  },
-
-  // Health
-  { 
-    id: 'p17', 
-    categoryId: 'cat5', 
-    name: 'Digital Blood Pressure Monitor', 
-    cPrice: 55, 
-    dPrice: 70, 
-    description: 'Accurate home health monitoring.', 
-    images: ['https://media.istockphoto.com/id/2236973526/photo/digital-device-measuring-blood-pressure-and-pulse-ideal-for-personal-health-and-hypertension.webp?a=1&b=1&s=612x612&w=0&k=20&c=l-XvxRUl8JbKbqG9S7p-UBHrXU9qcnwXe0AdN6z9-Eo='] 
-  },
-  { 
-    id: 'p18', 
-    categoryId: 'cat5', 
-    name: 'Multivitamin Supplements', 
-    cPrice: 22, 
-    dPrice: 30, 
-    description: 'Daily essential nutrients for adults.', 
-    images: ['https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800'] 
-  },
-  { 
-    id: 'p19', 
-    categoryId: 'cat5', 
-    name: 'Yoga Mat (Eco-friendly)', 
-    cPrice: 35, 
-    dPrice: 45, 
-    description: 'High-density padding for workouts.', 
-    images: ['https://images.unsplash.com/photo-1576678927484-cc907957088c?q=80&w=800'] 
-  },
-  { 
-    id: 'p20', 
-    categoryId: 'cat5', 
-    name: 'First Aid Kit (100 pcs)', 
-    cPrice: 25, 
-    dPrice: 35, 
-    description: 'Emergency medical supplies for home/travel.', 
-    images: ['https://images.unsplash.com/photo-1603398938378-e54eab446dde?q=80&w=800'] 
-  },
 
   // Toys & Games (Affirma Distributors)
   { 
@@ -1180,17 +993,245 @@ export const PRODUCTS: Product[] = [
     description: 'Infused with natural herbs like lavender and aloe, designed to soothe and comfort during your period. Specifically crafted for overnight use, providing extra absorbency and coverage. Made with organic cotton for a soft, gentle feel.', 
     images: ['https://cdn.shopify.com/s/files/1/0662/7278/8665/files/71lrq6NugtL._AC_SL1500-removebg-preview.png?v=1730751335'] 
   },
+  { 
+    id: 'p130', 
+    categoryId: 'cat1', 
+    name: 'Giant Plush Teddy Bear', 
+    cPrice: 45, 
+    dPrice: 60, 
+    description: 'Soft and cuddly companion for kids.', 
+    images: ['https://plus.unsplash.com/premium_photo-1702830272114-5432fd35c414?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
+  },
+  { 
+    id: 'p131', 
+    categoryId: 'cat1', 
+    name: 'Remote Control Car', 
+    cPrice: 30, 
+    dPrice: 40, 
+    description: 'High-speed RC car with 2.4GHz control.', 
+    images: ['https://images.unsplash.com/photo-1532911557891-d12f6b98dddc?q=80&w=800'] 
+  },
+  { 
+    id: 'p133', 
+    categoryId: 'cat1', 
+    name: 'LEGO Building Set', 
+    cPrice: 85, 
+    dPrice: 100, 
+    description: 'Creative building blocks for all ages.', 
+    images: ['https://images.unsplash.com/photo-1560343776-97e7d202ff0e?q=80&w=800'] 
+  },
+  { 
+    id: 'p134', 
+    categoryId: 'cat1', 
+    name: 'Strategy Board Game', 
+    cPrice: 25, 
+    dPrice: 35, 
+    description: 'Challenging multiplayer strategy game.', 
+    images: ['https://images.unsplash.com/photo-1611195974226-a6a9be9dd763?q=80&w=800'] 
+  },
+  
+  // Home & Kitchen
+  { 
+    id: 'p135', 
+    categoryId: 'cat2', 
+    name: 'Stainless Steel Knife Set', 
+    cPrice: 120, 
+    dPrice: 150, 
+    description: 'Professional grade kitchen knives.', 
+    images: ['https://images.unsplash.com/photo-1593618998160-e34014e67546?q=80&w=800'] 
+  },
+  { 
+    id: 'p136', 
+    categoryId: 'cat2', 
+    name: 'Non-Stick Frying Pan', 
+    cPrice: 45, 
+    dPrice: 55, 
+    description: 'Eco-friendly non-stick coating.', 
+    images: ['https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?q=80&w=800'] 
+  },
+  { 
+    id: 'p137', 
+    categoryId: 'cat2', 
+    name: 'Electric Coffee Maker', 
+    cPrice: 90, 
+    dPrice: 110, 
+    description: 'Programmable drip coffee machine.', 
+    images: ['https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800'] 
+  },
+  { 
+    id: 'p138', 
+    categoryId: 'cat2', 
+    name: 'Mixing Bowl Set', 
+    cPrice: 20, 
+    dPrice: 30, 
+    description: 'Set of 5 nesting stainless steel bowls.', 
+    images: ['https://images.unsplash.com/photo-1686472950413-9647efea07d5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
+  },
+  
+  // Beauty & Personal Care
+  { 
+    id: 'p139', 
+    categoryId: 'cat3', 
+    name: 'Hydrating Face Serum', 
+    cPrice: 25, 
+    dPrice: 35, 
+    description: 'Hyaluronic acid for glowing skin.', 
+    images: ['https://plus.unsplash.com/premium_photo-1764599500228-4f617bc70cc3?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
+  },
+  { 
+    id: 'p140', 
+    categoryId: 'cat3', 
+    name: 'Matte Liquid Lipstick', 
+    cPrice: 15, 
+    dPrice: 20, 
+    description: 'Long-lasting vibrant lip color.', 
+    images: ['https://images.unsplash.com/photo-1752327091756-b24f2764b653?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
+  },
+  { 
+    id: 'p141', 
+    categoryId: 'cat3', 
+    name: 'Sandalwood Body Wash', 
+    cPrice: 12, 
+    dPrice: 18, 
+    description: 'Refreshing organic body wash.', 
+    images: ['https://images.unsplash.com/photo-1669212408959-fdde3b2ed6a2?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
+  },
+  { 
+    id: 'p142', 
+    categoryId: 'cat3', 
+    name: 'Professional Hair Dryer', 
+    cPrice: 65, 
+    dPrice: 80, 
+    description: 'Ionic technology for frizz-free hair.', 
+    images: ['https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=800'] 
+  },
+
+  // Automotive
+  { 
+    id: 'p143', 
+    categoryId: 'cat4', 
+    name: 'Performance Engine Oil', 
+    cPrice: 40, 
+    dPrice: 50, 
+    description: 'Full synthetic oil for modern engines.', 
+    images: ['https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=800'] 
+  },
+  { 
+    id: 'p144', 
+    categoryId: 'cat4', 
+    name: 'Portable Car Vacuum', 
+    cPrice: 35, 
+    dPrice: 45, 
+    description: 'Powerful suction for vehicle interiors.', 
+    images: ['https://images.unsplash.com/photo-1768387666361-0d2319d716e9?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
+  },
+  { 
+    id: 'p145', 
+    categoryId: 'cat4', 
+    name: 'Leather Seat Covers', 
+    cPrice: 150, 
+    dPrice: 200, 
+    description: 'Universal fit premium leather protectors.', 
+    images: ['https://images.unsplash.com/photo-1564842505181-8862a3b9b173?q=80&w=1168&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'] 
+  },
+  { 
+    id: 'p146', 
+    categoryId: 'cat4', 
+    name: 'Dashboard Camera', 
+    cPrice: 80, 
+    dPrice: 110, 
+    description: '4K resolution with night vision.', 
+    images: ['https://images.unsplash.com/photo-1593642702749-b7d2a804fbcf?q=80&w=800'] 
+  },
+
+  // Health
+  { 
+    id: 'p147', 
+    categoryId: 'cat5', 
+    name: 'Digital Blood Pressure Monitor', 
+    cPrice: 55, 
+    dPrice: 70, 
+    description: 'Accurate home health monitoring.', 
+    images: ['https://media.istockphoto.com/id/2236973526/photo/digital-device-measuring-blood-pressure-and-pulse-ideal-for-personal-health-and-hypertension.webp?a=1&b=1&s=612x612&w=0&k=20&c=l-XvxRUl8JbKbqG9S7p-UBHrXU9qcnwXe0AdN6z9-Eo='] 
+  },
+  { 
+    id: 'p148', 
+    categoryId: 'cat5', 
+    name: 'Multivitamin Supplements', 
+    cPrice: 22, 
+    dPrice: 30, 
+    description: 'Daily essential nutrients for adults.', 
+    images: ['https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800'] 
+  },
+  { 
+    id: 'p149', 
+    categoryId: 'cat5', 
+    name: 'Yoga Mat (Eco-friendly)', 
+    cPrice: 35, 
+    dPrice: 45, 
+    description: 'High-density padding for workouts.', 
+    images: ['https://images.unsplash.com/photo-1576678927484-cc907957088c?q=80&w=800'] 
+  },
+  { 
+    id: 'p150', 
+    categoryId: 'cat5', 
+    name: 'First Aid Kit (100 pcs)', 
+    cPrice: 25, 
+    dPrice: 35, 
+    description: 'Emergency medical supplies for home/travel.', 
+    images: ['https://images.unsplash.com/photo-1603398938378-e54eab446dde?q=80&w=800'] 
+  },  
 ];
 
 export const PRODUCTS_LIST: Product[] = [
   // Toys & Games
-  { id: 'p1', categoryId: 'cat1', name: 'Giant Plush Teddy Bear', cPrice: 45, dPrice: 60, description: 'Soft and cuddly companion for kids.', images: ['https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=400'] },
-  { id: 'p2', categoryId: 'cat1', name: 'Remote Control Car', cPrice: 30, dPrice: 40, description: 'High-speed RC car with 2.4GHz control.', images: ['https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=400'] },
+ { 
+    id: 'p51', 
+    categoryId: 'cat3', 
+    name: 'ELEMIS Pro-Collagen Super Serum Elixir 15ml', 
+    cPrice: 85, 
+    dPrice: 110, 
+    description: 'Advanced anti-ageing serum designed to smooth, firm, and revitalise the skin. Pro-Collagen Renewal Serum helps improve skin elasticity and reduce visible fine lines. Super Elixir delivers a concentrated dose of marine and plant actives.', 
+    images: ['https://cdn.shopify.com/s/files/1/0662/7278/8665/files/ElemisProCollagenSerums_Renewal_SuperElixir_RoseMicroSerum_15ml_30ml_1.png?v=1756246457'] 
+  },
+  { 
+    id: 'p52', 
+    categoryId: 'cat3', 
+    name: 'L\'Occitane Shea Butter Liquid Soap Verbena 500ml', 
+    cPrice: 30, 
+    dPrice: 42, 
+    description: 'Gentle liquid soap enriched with shea butter to cleanse while maintaining skin\'s natural moisture balance. Fresh verbena fragrance leaves hands and body delicately scented with citrusy notes. Vegan formula suitable for daily use.', 
+    images: ['https://cdn.shopify.com/s/files/1/0662/7278/8665/files/L_OCCITANESheaVerbenaLiquidSoap_Hands_Body_300ml_1.png?v=1756236677'] 
+  },
+  { 
+    id: 'p53', 
+    categoryId: 'cat3', 
+    name: 'RoC Multi Correxion Anti-Sagging Face Cream 50ml', 
+    cPrice: 28, 
+    dPrice: 38, 
+    description: 'Rich anti-ageing cream developed to target sagging and loss of firmness in mature skin. Helps visibly lift and tighten the face and neck area with continued use. Intensely hydrating formula with hyaluronic acid to restore elasticity.', 
+    images: ['https://cdn.shopify.com/s/files/1/0662/7278/8665/files/RoCMultiCorrexionFirm_LiftRichCream_Face_Neck_50ml_1.png?v=1756233563'] 
+  },
+
+  // Automotive Accessories (Affirma Distributors)
+  { 
+    id: 'p54', 
+    categoryId: 'cat4', 
+    name: 'Motorcraft FL2016 Oil Filter', 
+    cPrice: 18.99, 
+    dPrice: 24.99, 
+    description: 'Genuine OEM Motorcraft oil filter designed for Ford, Lincoln, and Mercury vehicles. Efficiently captures contaminants to protect your engine. Model number FL2016 ensures reliable and consistent oil filtration.', 
+    images: ['https://cdn.shopify.com/s/files/1/0662/7278/8665/files/Motorcraft_FL2016_Oil_Filter.png?v=1724859014'] 
+  },
+  { 
+    id: 'p55', 
+    categoryId: 'cat4', 
+    name: 'Polaris Drive Belt 3211180 OEM CVT Belt', 
+    cPrice: 119.99, 
+    dPrice: 155, 
+    description: 'Designed for RZR XP 1000, XP 4 1000, Trail S & S 1000 Premium Ultimate, General XP 1000, and more. OEM performance CVT belt for reliable power transmission. Runs cooler to reduce wear and extend belt life.', 
+    images: ['https://cdn.shopify.com/s/files/1/0662/7278/8665/files/PolarisDriveBeltforRZRXP1000_XP41000_TrailS_S1000PremiumUltimate_GeneralXP1000_XP41000ModelsandMore_RunsCooler_OEMPerformanceCVTBelt_NoClutchRecalibration-3211180_1.png?v=1735755101'] 
+  },
   
-  // Home & Kitchen
-  { id: 'p7', categoryId: 'cat2', name: 'Electric Coffee Maker', cPrice: 90, dPrice: 110, description: 'Programmable drip coffee machine.', images: ['https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=400'] },
-  { id: 'p8', categoryId: 'cat2', name: 'Mixing Bowl Set', cPrice: 20, dPrice: 30, description: 'Set of 5 nesting stainless steel bowls.', images: ['https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?w=400'] },
   
-  // Beauty & Personal Care
-  { id: 'p9', categoryId: 'cat3', name: 'Hydrating Face Serum', cPrice: 25, dPrice: 35, description: 'Hyaluronic acid for glowing skin.', images: ['https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400'] },
 ];

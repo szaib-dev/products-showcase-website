@@ -5,11 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { GoPerson } from "react-icons/go";
 import { VscThreeBars } from "react-icons/vsc";
-import { ArrowRight } from "lucide-react"; // Added ArrowRight for hover effect
+import { ArrowRight, Phone } from "lucide-react"; 
 import {
   FiSearch,
   FiX,
-  FiClock,
   FiTruck,
   FiMapPin,
   FiTag,
@@ -18,7 +17,6 @@ import { cn } from "@/lib/utils";
 import { PRODUCTS } from "@/constants";
 import { X } from "lucide-react";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { User } from "@clerk/nextjs/server";
 import Logo from "@/components/Logo";
 
 interface Product {
@@ -37,35 +35,26 @@ function Navbar() {
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
-  // Search products
   useEffect(() => {
     if (searchQuery.trim() === "") {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSearchResults([]);
       return;
     }
-
     const query = searchQuery.toLowerCase();
     const results = PRODUCTS.filter(
       (product) =>
         product.name.toLowerCase().includes(query) ||
         product.description.toLowerCase().includes(query),
     ).slice(0, 5);
-
     setSearchResults(results);
   }, [searchQuery]);
 
-  // Close results when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        searchRef.current &&
-        !searchRef.current.contains(event.target as Node)
-      ) {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setShowResults(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
@@ -84,216 +73,118 @@ function Navbar() {
   };
 
   return (
-    <nav className="flex flex-col relative">
-      {/* Top Header Bar */}
+    <nav className="flex flex-col relative z-50">
       <Header />
 
-      {/* Sidebar */}
       <Sidebar isSidebar={isSidebarOpen} setIsSidebar={setIsSidebarOpen} />
 
-      {/* Overlay */}
       {isSidebarOpen && (
         <div
           onClick={() => setIsSidebarOpen(false)}
-          className="h-screen w-full bg-black/50 fixed inset-0 z-20"
+          className="h-screen w-full bg-black/20 backdrop-blur-sm fixed inset-0 z-40 transition-opacity"
         />
       )}
 
-      {/* Main Navbar */}
-      <div className="h-14 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto w-full h-full flex justify-between items-center px-4">
+      {/* Main Navbar: Clean White Design */}
+      <div className="h-20 bg-white border-b border-gray-100 sticky top-0">
+        <div className="max-w-7xl mx-auto w-full h-full flex justify-between items-center px-6">
+          
           {/* Left: Menu + Logo */}
-          <div className="flex items-center gap-2">
-            {!isSidebarOpen && (
-              <button
-                onClick={() => setIsSidebarOpen(true)}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <VscThreeBars className="w-6 h-6 text-sky-500" />
-              </button>
-            )}
-            <div className="w-30 h-14">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className="p-2 hover:bg-gray-50 rounded-full transition-colors group"
+            >
+              <VscThreeBars className="w-6 h-6 text-gray-900 group-hover:text-sky-500" />
+            </button>
+            <div className="w-28 flex items-center">
               <Logo />
             </div>
           </div>
 
-          {/* Center: Search (Desktop) */}
-          <div
-            ref={searchRef}
-            className="hidden md:block flex-1 max-w-xl mx-8 relative"
-          >
+          {/* Center: Search (Desktop) - Modern Gray Pill */}
+          <div ref={searchRef} className="hidden lg:block flex-1 max-w-md mx-8 relative">
             <div className="relative">
-              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setShowResults(true)}
-                placeholder="Search products..."
-                className="w-full pl-11 pr-10 py-2.5 rounded-lg border border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500 outline-none transition-all"
+                placeholder="Search premium products..."
+                className="w-full pl-11 pr-10 py-2.5 rounded-full border-none bg-gray-100 text-sm text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-sky-500/20 focus:bg-white outline-none transition-all"
               />
               {searchQuery && (
-                <button
-                  onClick={clearSearch}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-200 rounded-full transition-colors"
-                >
-                  <FiX className="w-4 h-4 text-gray-500" />
+                <button onClick={clearSearch} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600">
+                  <FiX className="w-4 h-4" />
                 </button>
               )}
             </div>
 
-            {/* Search Results Dropdown */}
+            {/* Results Dropdown */}
             {showResults && searchQuery && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl border border-gray-200 shadow-lg z-50 overflow-hidden">
+              <div className="absolute top-full left-0 right-0 mt-3 bg-white rounded-2xl border border-gray-100 shadow-xl z-50 overflow-hidden">
                 {searchResults.length > 0 ? (
-                  <>
-                    <div className="px-4 py-2 bg-gray-50 border-b border-gray-100">
-                      <p className="text-xs text-gray-500">
-                        {searchResults.length} result
-                        {searchResults.length !== 1 ? "s" : ""} found
-                      </p>
-                    </div>
-                    <div className="max-h-80 overflow-y-auto">
-                      {searchResults.map((product) => (
-                        <Link
-                          key={product.id}
-                          href={`/product/${product.id}`}
-                          onClick={handleResultClick}
-                          className="flex items-center gap-4 p-3 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0"
-                        >
-                          <div className="w-12 h-12 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0 relative">
-                            <Image
-                              src={product.images[0]}
-                              alt={product.name}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-medium text-gray-900 text-sm truncate">
-                              {product.name}
-                            </h4>
-                            <p className="text-xs text-gray-500 truncate">
-                              {product.description}
-                            </p>
-                          </div>
-                          <FiSearch className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                        </Link>
-                      ))}
-                    </div>
-                    <Link
-                      href={`/products?search=${encodeURIComponent(searchQuery)}`}
-                      onClick={handleResultClick}
-                      className="block px-4 py-3 bg-gray-50 text-center text-sm text-sky-500 hover:text-sky-600 font-medium hover:bg-gray-100 transition-colors"
-                    >
-                      View all results
-                    </Link>
-                  </>
-                ) : (
-                  <div className="p-6 text-center">
-                    <FiSearch className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-                    <p className="text-gray-500 text-sm">No products found</p>
-                    <p className="text-gray-400 text-xs mt-1">
-                      Try a different search term
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Right: Search Icon (Mobile) + Sign In */}
-          <div className="flex items-center gap-3">
-            {/* Mobile Search Toggle */}
-            <button
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
-            >
-              {isSearchOpen ? (
-                <FiX className="w-5 h-5 text-gray-600" />
-              ) : (
-                <FiSearch className="w-5 h-5 text-gray-600" />
-              )}
-            </button>
-
-            {/* Sign In */}
-              <UserButton />
-              <SignedOut>
-                 <SignInButton>
-              <button
-                className="flex items-center cursor-pointer gap-2 hover:bg-gray-100 px-3 py-2 rounded-lg transition-colors"
-              >
-                <GoPerson className="w-5 h-5 text-sky-500" />
-                <span className="text-sm text-gray-600">
-                  Sign <span className="hidden sm:inline">Up/</span>In
-                </span>
-              </button>
-            </SignInButton>
-              </SignedOut>
-            
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Search Bar */}
-      {isSearchOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200 px-4 py-3">
-          <div ref={searchRef} className="relative">
-            <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onFocus={() => setShowResults(true)}
-              placeholder="Search products..."
-              autoFocus
-              className="w-full pl-10 pr-10 py-2.5 rounded-lg border border-gray-200 bg-gray-50 text-gray-900 placeholder:text-gray-400 focus:border-sky-500 focus:bg-white outline-none"
-            />
-            {searchQuery && (
-              <button
-                onClick={clearSearch}
-                className="absolute right-3 top-1/2 -translate-y-1/2"
-              >
-                <FiX className="w-4 h-4 text-gray-500" />
-              </button>
-            )}
-
-            {/* Mobile Search Results */}
-            {showResults && searchQuery && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl border border-gray-200 shadow-lg z-50 overflow-hidden">
-                {searchResults.length > 0 ? (
-                  <div className="max-h-64 overflow-y-auto">
+                  <div className="flex flex-col">
                     {searchResults.map((product) => (
-                      <Link
-                        key={product.id}
-                        href={`/product/${product.id}`}
-                        onClick={handleResultClick}
-                        className="flex items-center gap-3 p-3 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0"
-                      >
-                        <div className="w-10 h-10 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0 relative">
-                          <Image
-                            src={product.images[0]}
-                            alt={product.name}
-                            fill
-                            className="object-cover"
-                          />
+                      <Link key={product.id} href={`/product/${product.id}`} onClick={handleResultClick} className="flex items-center gap-4 p-3 hover:bg-gray-50 transition-colors">
+                        <div className="w-10 h-10 rounded-lg bg-gray-100 relative overflow-hidden">
+                          <Image src={product.images[0]} alt={product.name} fill className="object-cover" />
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-medium text-gray-900 text-sm truncate">
-                            {product.name}
-                          </h4>
-                        </div>
+                        <span className="text-sm font-medium text-gray-700">{product.name}</span>
                       </Link>
                     ))}
                   </div>
                 ) : (
-                  <div className="p-4 text-center">
-                    <p className="text-gray-500 text-sm">No products found</p>
-                  </div>
+                  <div className="p-4 text-center text-sm text-gray-500">No results found</div>
                 )}
               </div>
             )}
           </div>
+
+          {/* Right Section: Call Button + Account */}
+          <div className="flex items-center gap-3 md:gap-6">
+            {/* Call Button - Desktop */}
+            <a 
+              href="tel:8886801834" 
+              className="hidden md:flex items-center gap-2 bg-gray-900 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-800 transition-all active:scale-95 shadow-sm"
+            >
+              <Phone className="w-4 h-4" />
+              <span>(888) 680-1834</span>
+            </a>
+
+            <div className="h-8 w-[1px] bg-gray-100 hidden md:block" />
+
+            <div className="flex items-center gap-2">
+              <UserButton afterSignOutUrl="/" />
+              <SignedOut>
+                <SignInButton mode="modal">
+                  <button className="p-2 md:px-4 md:py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-full transition-colors flex items-center gap-2">
+                    <GoPerson className="w-5 h-5 text-gray-400" />
+                    <span className="hidden sm:inline">Sign In</span>
+                  </button>
+                </SignInButton>
+              </SignedOut>
+            </div>
+            
+            {/* Mobile Search Icon */}
+            <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="lg:hidden p-2 text-gray-600">
+              <FiSearch className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Search Bar Expansion */}
+      {isSearchOpen && (
+        <div className="lg:hidden bg-white px-4 py-3 border-b border-gray-100">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-full p-3 bg-gray-100 rounded-xl outline-none"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
         </div>
       )}
     </nav>
@@ -304,156 +195,69 @@ export default Navbar;
 
 function Header() {
   return (
-    <header className="w-full bg-sky-500 text-white overflow-hidden px-4">
-      {/* Mobile: Infinite Scroll */}
-      <div className="md:hidden w-full overflow-hidden">
-        <div className="animate-marquee inline-flex items-center gap-8 min-w-max">
-          <span className="flex items-center gap-2">
-            <FiMapPin className="w-4 h-4" />
-            Location
-          </span>
-          <span>•</span>
-          <span className="flex items-center gap-2">
-            <FiTruck className="w-4 h-4" />
-            Deliver to
-          </span>
-          <span>•</span>
-          <span className="flex items-center gap-2">
-            <FiTag className="w-4 h-4" />
-            All Offers
-          </span>
-          <span>•</span>
-          <span className="font-medium">Welcome to worldwide Avelon MFG LLC</span>
-          <span>•</span>
-          {/* Duplicate for seamless loop */}
-          <span className="flex items-center gap-2">
-            <FiMapPin className="w-4 h-4" />
-            Location
-          </span>
-          <span>•</span>
-          <span className="flex items-center gap-2">
-            <FiTruck className="w-4 h-4" />
-            Deliver to
-          </span>
-          <span>•</span>
-          <span className="flex items-center gap-2">
-            <FiTag className="w-4 h-4" />
-            All Offers
-          </span>
-          <span>•</span>
-          <span className="font-medium">Welcome to worldwide Avelon MFG LLC.</span>
-          <span>•</span>
-        </div>
+    <header className="w-full bg-sky-500 py-2 text-white overflow-hidden">
+      <div className="animate-marquee whitespace-nowrap flex items-center gap-10">
+        {[1, 2].map((i) => (
+          <div key={i} className="flex items-center gap-10 text-[11px] font-bold uppercase tracking-widest">
+            <span className="flex items-center gap-2"><FiMapPin /> Global Shipping</span>
+            <span>•</span>
+            <span className="flex items-center gap-2"><FiTruck /> Fast Delivery</span>
+            <span>•</span>
+            <span className="flex items-center gap-2"><FiTag /> Exclusive Trade Deals</span>
+            <span>•</span>
+            <span className="font-extrabold text-white">Avelon MFG LLC Worldwide</span>
+            <span>•</span>
+          </div>
+        ))}
       </div>
     </header>
   );
 }
 
-function Sidebar({
-  setIsSidebar,
-  isSidebar,
-}: {
-  setIsSidebar: React.Dispatch<React.SetStateAction<boolean>>;
-  isSidebar: boolean;
-}) {
+function Sidebar({ setIsSidebar, isSidebar }: { setIsSidebar: any; isSidebar: boolean }) {
   const menuCategories = [
-    {
-      title: "Discover",
-      items: [
-        { href: "/", label: "Home" },
-        { href: "/product", label: "All Products" },
-        { href: "/about", label: "Our Story" },
-      ],
-    },
-    {
-      title: "Business",
-      items: [
-        { href: "/trade-form", label: "Trade Application", highlight: true },
-      ],
-    },
-    {
-      title: "Support",
-      items: [
-        { href: "/contact", label: "Contact Us" },
-        { href: "/faq", label: "Help Center" },
-      ],
-    },
-    {
-      title: "Legal",
-      items: [
-        { href: "/privacy", label: "Privacy Policy" },
-        { href: "/terms", label: "Terms of Service" },
-      ],
-    },
+    { title: "Discover", items: [{ href: "/", label: "Home" }, { href: "/product", label: "Products" }, { href: "/about", label: "Our Story" }] },
+    { title: "Business", items: [{ href: "/trade-form", label: "Trade Application", highlight: true }] },
+    { title: "Support", items: [{ href: "/contact", label: "Contact Us" }, { href: "/faq", label: "Help Center" }] },
   ];
 
   return (
-    <aside
-      className={cn(
-        "top-0 right-0 h-screen fixed z-50 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] w-full bg-primary px-6 overflow-hidden",
-        isSidebar ? "translate-y-0" : "-translate-y-full",
-      )}
-    >
-      <div className="max-w-[1300px] mx-auto w-full py-10 flex flex-col h-full">
-        {/* --- Header Section (Kept Exact) --- */}
-        <div className="w-full flex justify-between items-center mb-12 shrink-0">
-         <div className="h-30 w-50"> <Logo /></div>
+    <aside className={cn(
+      "fixed inset-y-0 left-0 z-[60] w-full md:w-[400px] bg-white shadow-2xl transition-transform duration-500 ease-in-out px-8 py-10",
+      isSidebar ? "translate-x-0" : "-translate-x-full"
+    )}>
+      <div className="flex justify-between items-center mb-12">
+        <Logo />
+        <button onClick={() => setIsSidebar(false)} className="p-3 hover:bg-gray-100 rounded-full transition-colors">
+          <X className="w-6 h-6 text-gray-900" />
+        </button>
+      </div>
 
-          <button
-            onClick={() => setIsSidebar(false)}
-            className="size-12 hover:bg-white hover:text-primary transition-all cursor-pointer group duration-200 border border-white rounded-full flex justify-center items-center shrink-0"
-          >
-            <X className="text-white group-hover:text-primary size-6" />
-          </button>
-        </div>
-
-        {/* --- Modern Categorized Navigation --- */}
-        <div className="flex-1 overflow-y-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 pb-10">
-            {menuCategories.map((category, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700"
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                {/* Category Title */}
-                <h3 className="text-sky-200/60 uppercase tracking-[0.2em] text-xs font-bold font-inter">
-                  {category.title}
-                </h3>
-
-                {/* Links */}
-                <div className="flex flex-col gap-4">
-                  {category.items.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setIsSidebar(false)}
-                      className="group flex items-center gap-2 w-fit"
-                    >
-                      <span
-                        className={cn(
-                          "text-2xl md:text-3xl font-inter font-light transition-all duration-300 group-hover:translate-x-2",
-                          "text-white/90 group-hover:text-white",
-                        )}
-                      >
-                        {link.label}
-                      </span>
-                      {/* Subtle hover arrow */}
-                      <ArrowRight className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-2 text-white transition-all duration-300 size-5 mt-1" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ))}
+      <div className="space-y-10">
+        {menuCategories.map((cat, i) => (
+          <div key={i}>
+            <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">{cat.title}</h3>
+            <div className="flex flex-col gap-4">
+              {cat.items.map((item, j) => (
+                <Link 
+                  key={j} 
+                  href={item.href} 
+                  onClick={() => setIsSidebar(false)}
+                  className="group flex items-center justify-between text-2xl font-semibold text-gray-900 hover:text-sky-500 transition-colors"
+                >
+                  {item.label}
+                  <ArrowRight className="w-5 h-5 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        ))}
+      </div>
 
-        {/* --- Decorative Background Element (Optional "Super Cool" touch) --- */}
-        <div className="absolute bottom-0 right-0 pointer-events-none opacity-5 select-none">
-          <span className="text-[20vw] font-bold text-white leading-none tracking-tighter">
-            MENU
-          </span>
-        </div>
+      <div className="absolute bottom-10 left-8 right-8">
+        <a href="tel:8886801834" className="flex items-center justify-center gap-3 bg-gray-900 text-white p-5 rounded-2xl font-bold">
+          <Phone className="w-5 h-5" /> Call Support
+        </a>
       </div>
     </aside>
   );

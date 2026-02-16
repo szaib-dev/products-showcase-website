@@ -1,69 +1,74 @@
 import React from "react";
-import Crausal from "./_components/Crausal";
-import Features from "./_components/Hero"; // Renaming to BrandFeatures for clarity is recommended
-import GridHeader from "@/components/Layout/GridHeader";
-import GridCircle from "@/components/Layout/GridCircle";
-import GridRoundSquare from "@/components/Layout/GridRoudSquare";
-import Grid2Images from "@/components/Layout/Grid2Images";
+import Carousel from "./_components/Crausal"; // Assuming Carousel component
+import WholesaleInquiry from "./_components/Hero"; 
+import SectionHeader from "@/components/Layout/GridHeader";
+import CategoryGrid from "@/components/Layout/GridCircle";
+import ProductGrid from "@/components/Layout/GridRoudSquare";
+import PromoBanners from "@/components/Layout/Grid2Images";
 import { CATEGORIES, PRODUCTS, PRODUCTS_LIST } from "@/constants";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50 font-sans text-gray-900 pb-20">
+    <main className="min-h-screen bg-white font-sans text-gray-900 pb-24">
       
-      {/* 1. Hero Section (White bg for contrast) */}
-      <section className=" pt-4 pb-8  mb-12">
-        <div className="max-w-[1300px] mx-auto px-4 w-full">
-          <Crausal />
+      {/* 1. Hero / Carousel Section */}
+      <section className="pt-6 pb-12">
+        <div className="max-w-[1400px] mx-auto px-6 w-full">
+          <div className="rounded-[2rem] overflow-hidden shadow-sm border border-gray-100">
+            <Carousel />
+          </div>
         </div>
       </section>
 
-      {/* Main Content Wrapper */}
-      <div className="flex flex-col gap-16 md:gap-24">
+      {/* Content Flow */}
+      <div className="flex flex-col gap-8">
         
-        {/* 2. Categories */}
-        <section className="max-w-[1300px] mx-auto px-4 w-full">
-          <GridHeader
-            title="Shop by"
-            highlight="Categories"
+        {/* 2. Distribution Categories */}
+        <section className="max-w-[1300px] mx-auto px-6 w-full">
+          <SectionHeader
+            title="Browse our"
+            highlight="Distribution Categories"
             link="/product"
           />
-          <div className="mt-6">
-            <GridCircle categories={CATEGORIES} />
+          <div className="mt-10">
+            <CategoryGrid categories={CATEGORIES} />
           </div>
         </section>
 
-        {/* 3. Smartphone Deals */}
-        <section className="max-w-[1300px] mx-auto px-4 w-full">
-          <GridHeader
-            title="Grab the best deal on"
-            highlight="Smartphone"
+        {/* 3. Primary Inventory / Featured Distribution */}
+        <section className="max-w-[1300px] mx-auto px-6 w-full">
+          <SectionHeader
+            title="Featured"
+            highlight="Product Inventory"
             link="/product"
           />
-          <div className="mt-6">
-            <GridRoundSquare products={PRODUCTS_LIST} />
+          <div className="mt-10">
+            <ProductGrid products={PRODUCTS_LIST} />
           </div>
         </section>
 
-        {/* 4. Promotional Banners */}
-        <section className="max-w-[1300px] mx-auto px-4 w-full">
-          <Grid2Images />
+        {/* 4. Strategic Banners */}
+        <section className="max-w-[1400px] mx-auto px-6 w-full">
+          <div className="rounded-[2.5rem] overflow-hidden">
+             <PromoBanners />
+          </div>
         </section>
 
-        {/* 5. Brand Features (Full Width) */}
-        <section className="w-full">
-          <Features />
+        {/* 5. Partnership & Wholesale Process (The Features component) */}
+        {/* We keep this full width as it acts as a transition to the Trade Form */}
+        <section className="w-full bg-gray-50/50 py-4">
+          <WholesaleInquiry />
         </section>
 
-        {/* 6. Special Products */}
-        <section className="max-w-[1300px] mx-auto px-4 w-full">
-          <GridHeader
-            title="Find the best"
-            highlight="Products"
-            link="/products"
+        {/* 6. Global Sourcing / Full Catalog */}
+        <section className="max-w-[1300px] mx-auto px-6 w-full">
+          <SectionHeader
+            title="Global"
+            highlight="Sourcing Portfolio"
+            link="/product"
           />
-          <div className="mt-6">
-            <GridRoundSquare products={PRODUCTS} />
+          <div className="mt-10">
+            <ProductGrid products={PRODUCTS} />
           </div>
         </section>
 

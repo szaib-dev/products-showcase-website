@@ -462,7 +462,7 @@ const handleFinalConfirm = async () => {
               {[
                 { key: 'accurate', text: 'I verify that the information provided above is accurate and true.' },
                 { key: 'policies', text: 'I acknowledge reading and agree to comply with wholesale policies.' },
-                { key: 'verification', text: 'I understand that Avelon MFG LLC may request additional verification.' }
+                { key: 'verification', text: 'I understand that Avelon MFG may request additional verification.' }
               ].map((item) => (
                 <label key={item.key} className="flex items-start gap-4 cursor-pointer group p-2 hover:bg-white/60 rounded-lg transition-colors">
                   <input 

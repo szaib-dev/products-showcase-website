@@ -330,7 +330,7 @@ export default function ContactPage() {
               View FAQs
             </Link>
             <Link
-              href="/products"
+              href="/product"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-sky-500 text-white font-semibold rounded-lg hover:bg-sky-600 transition-colors"
             >
               Browse Products
