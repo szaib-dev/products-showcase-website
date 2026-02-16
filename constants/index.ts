@@ -1223,6 +1223,15 @@ export const PRODUCTS_LIST: Product[] = [
     description: 'Genuine OEM Motorcraft oil filter designed for Ford, Lincoln, and Mercury vehicles. Efficiently captures contaminants to protect your engine. Model number FL2016 ensures reliable and consistent oil filtration.', 
     images: ['https://cdn.shopify.com/s/files/1/0662/7278/8665/files/Motorcraft_FL2016_Oil_Filter.png?v=1724859014'] 
   },
+    { 
+    id: 'p88', 
+    categoryId: 'cat5', 
+    name: 'Sellstrom Reusable Banded Earplugs', 
+    cPrice: 4.35, 
+    dPrice: 7, 
+    description: 'High-quality reusable earplugs designed for industrial, construction, and workplace safety. 25dB noise reduction rating (NRR) helps protect ears from loud environments. Flexible band design allows for a secure fit while resting comfortably. Hi-Vis Green/Blue.', 
+    images: ['https://cdn.shopify.com/s/files/1/0662/7278/8665/files/SellstromReusableBandedEarplugsforWork-WorkSafetyHearingProtection-25dB-Hi-VisGreenBlue_2.png?v=1738577226'] 
+  },
   { 
     id: 'p55', 
     categoryId: 'cat4', 

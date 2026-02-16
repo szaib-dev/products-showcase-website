@@ -42,8 +42,11 @@ export default function Home() {
             highlight="Product Inventory"
             link="/product"
           />
-          <div className="mt-10">
-            <ProductGrid products={PRODUCTS_LIST} limit={20} />
+          <div className="mt-10 md:block hidden">
+            <ProductGrid products={PRODUCTS_LIST} limit={5} />
+          </div>
+          <div className="mt-10 md:hidden block ">
+            <ProductGrid products={PRODUCTS_LIST} limit={6} />
           </div>
         </section>
 
@@ -67,9 +70,10 @@ export default function Home() {
             highlight="Sourcing Portfolio"
             link="/product"
           />
-          <div className="mt-10">
+          <div className="mt-10 md:hidden">
             <ProductGrid products={PRODUCTS} limit={20} />
           </div>
+          
         </section>
 
       </div>
