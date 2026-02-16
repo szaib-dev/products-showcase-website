@@ -94,7 +94,7 @@ function ProductContent() {
       <main className="min-h-[400px]">
         {filteredProducts.length > 0 ? (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <GridRoundSquare products={filteredProducts} />
+            <GridRoundSquare products={filteredProducts}  />
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-24 text-center border-2 border-dashed border-gray-100 rounded-3xl">
@@ -103,7 +103,7 @@ function ProductContent() {
             </div>
             <h3 className="text-xl font-semibold text-gray-900">Nothing found</h3>
             <p className="text-gray-500 mt-2 max-w-xs mx-auto">
-              We couldn't find any items in this category. Try switching filters or check back later.
+              We couldn&apos;t find any items in this category. Try switching filters or check back later.
             </p>
             <button
               onClick={() => updateQuery('category', 'All')}

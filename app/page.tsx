@@ -43,7 +43,7 @@ export default function Home() {
             link="/product"
           />
           <div className="mt-10">
-            <ProductGrid products={PRODUCTS_LIST} />
+            <ProductGrid products={PRODUCTS_LIST} limit={20} />
           </div>
         </section>
 
@@ -68,7 +68,7 @@ export default function Home() {
             link="/product"
           />
           <div className="mt-10">
-            <ProductGrid products={PRODUCTS} />
+            <ProductGrid products={PRODUCTS} limit={20} />
           </div>
         </section>
 
