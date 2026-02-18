@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const PER_PAGE = 50;
 
-export default function ProductPage() {
+function ProductPageInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -377,5 +377,13 @@ export default function ProductPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ProductPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0E0C0A]" />}>
+      <ProductPageInner />
+    </Suspense>
   );
 }
