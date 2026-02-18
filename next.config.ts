@@ -10,19 +10,27 @@ const nextConfig: NextConfig = {
       },{
         hostname: "plus.unsplash.com",
         protocol: "https"
-      },{
+      },
+      {
         hostname: "media.istockphoto.com",
         protocol: "https"
-      },{
+      },
+      {
         hostname: "www.affirmadistributors.us",
         protocol: "https"
-      },{
-        hostname: "cdn-icons-png.flaticon.com",
+      },
+      {
+        hostname: "loremflickr.com",
         protocol: "https"
-      },{
+      },
+      {
         hostname: "cdn.shopify.com",
         protocol: "https"
-      }
+      },
+      {
+        hostname: "loremflickr.com",
+        protocol: "https"
+      },
     ]
   }
 };

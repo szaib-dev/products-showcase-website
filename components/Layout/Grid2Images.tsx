@@ -1,33 +1,54 @@
-import Image from 'next/image'
-import React from 'react'
-import { IoIosArrowRoundUp } from "react-icons/io";
+"use client";
+
+import Image from "next/image";
+import React from "react";
+import { ArrowUpRight } from "lucide-react";
+import { useStaggerReveal } from "@/hooks/useScrollReveal";
+
 function Grid2Images() {
+  const ref = useStaggerReveal<HTMLDivElement>({
+    y: 40,
+    stagger: 0.15,
+    duration: 0.7,
+  });
+
   return (
-    <div className='grid grid-cols-2 gap-3 p-0 px-2 h-[100px] md:h-[200px]'>
-
-        {/* FIRST IMAGE SECTION  */}
-      <div className='relative group flex cursor-pointer justify-center items-center rounded-lg overflow-hidden '>
-            <Image src={"/a.jpg"} height={300} width={600} alt='Slide Images' className='size-full object-cover' /> 
-            {/* // Overlay  */}
-        <div className='size-full absolute   bg-linear-to-t from-black to-transparent to-60%  z-10 right-0 transition-all duration-300  opacity-0 group-hover:opacity-100  top-100 group-hover:top-0  flex justify-center items-end font-montserrat '>
-
-         <h1 className='text-white md:text-2xl font-montserrat flex items-center gap-1'>SPECIAL OFFERS <IoIosArrowRoundUp className="size-4 md:size-6 text-white animate-bounce" /> </h1>
+    <div ref={ref} className="grid grid-cols-2 gap-3 md:gap-4 h-[120px] md:h-[220px]">
+      {/* FIRST IMAGE */}
+      <div className="relative group flex cursor-pointer justify-center items-center rounded-2xl overflow-hidden border border-[#E7DFD5]/50">
+        <Image
+          src="/a.jpg"
+          height={300}
+          width={600}
+          alt="Special Offers"
+          className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="size-full absolute bg-gradient-to-t from-[#1C1917]/70 to-transparent to-60% z-10 transition-all duration-500 opacity-0 group-hover:opacity-100 flex justify-center items-end pb-4 md:pb-6">
+          <span className="text-white text-sm md:text-xl font-display flex items-center gap-2 tracking-wide">
+            Special Offers
+            <ArrowUpRight className="size-4 md:size-5 text-[#C4A378]" />
+          </span>
         </div>
-        </div>
+      </div>
 
-        {/* SECOND IMAGE SECTION  */}
-        <div className='relative group flex cursor-pointer justify-center items-center rounded-lg overflow-hidden '>
-            <Image src={"/b.jpg"} height={300} width={600} alt='Slide Images' className='size-full object-cover' /> 
-            {/* // Overlay  */}
-        <div className='size-full absolute   bg-linear-to-t from-black to-transparent to-60%  z-10 right-0 transition-all duration-300  opacity-0 group-hover:opacity-100  top-100 group-hover:top-0  flex justify-center items-end font-montserrat '>
-
-         <h1 className='text-white md:text-2xl font-montserrat flex items-center gap-1'>SPECIAL OFFERS <IoIosArrowRoundUp className="size-4 md:size-6 text-white animate-bounce" /> </h1>
+      {/* SECOND IMAGE */}
+      <div className="relative group flex cursor-pointer justify-center items-center rounded-2xl overflow-hidden border border-[#E7DFD5]/50">
+        <Image
+          src="/b.jpg"
+          height={300}
+          width={600}
+          alt="New Arrivals"
+          className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="size-full absolute bg-gradient-to-t from-[#1C1917]/70 to-transparent to-60% z-10 transition-all duration-500 opacity-0 group-hover:opacity-100 flex justify-center items-end pb-4 md:pb-6">
+          <span className="text-white text-sm md:text-xl font-display flex items-center gap-2 tracking-wide">
+            New Arrivals
+            <ArrowUpRight className="size-4 md:size-5 text-[#C4A378]" />
+          </span>
         </div>
-        </div>
-
-        
-    </div> 
-  )
+      </div>
+    </div>
+  );
 }
 
-export default Grid2Images
+export default Grid2Images;

@@ -3,24 +3,8 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import emailjs from '@emailjs/browser';
 import Link from "next/link";
-import {
-  FiMail,
-  FiPhone,
-  FiMapPin,
-  FiClock,
-  FiSend,
-  FiMessageCircle,
-  FiArrowRight,
-} from "react-icons/fi";
-import { FaWhatsapp, FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { ArrowUpRight } from "lucide-react";
 import { toast } from "sonner";
-
-const socials = [
-  { icon: FaFacebookF, href: "#", label: "Facebook" },
-  { icon: FaInstagram, href: "#", label: "Instagram" },
-  { icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
-  { icon: FaWhatsapp, href: "#", label: "WhatsApp" },
-];
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,33 +24,21 @@ export default function ContactPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
-      const emailData = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone || 'N/A',
-        subject: formData.subject || 'General Inquiry',
-        message: formData.message
-      };
-
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
         process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID as string,
-        emailData,
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || 'N/A',
+          subject: formData.subject || 'General Inquiry',
+          message: formData.message
+        },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string
       );
-
-      toast.success('Message sent successfully! We will get back to you soon.');
-      
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      });
-
+      toast.success('Message sent! We will get back to you soon.');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
     } catch (error) {
       console.error('Email send failed:', error);
       toast.error('Failed to send message. Please try again.');
@@ -75,268 +47,291 @@ export default function ContactPage() {
     }
   };
 
+  const inputClass = `
+    w-full bg-white/[0.04] border border-white/[0.08] text-white placeholder:text-white/20
+    text-[13px] px-4 py-3 outline-none
+    focus:border-[#C4A378]/60 focus:bg-white/[0.06]
+    transition-colors duration-200
+  `;
+
+  const labelClass = `
+    block text-[10px] text-white/30 tracking-[0.2em] uppercase mb-2
+  `;
+
   return (
-    <div className="min-h-screen bg-white">
-      <section className="relative bg-[#0c4a6e] overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-sky-500/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
-        </div>
+    <div className="min-h-screen bg-[#0E0C0A] mt-30">
 
-        <div className="relative max-w-6xl mx-auto px-4 py-20 lg:py-28">
-          <p className="text-sky-300 font-medium mb-4 tracking-wide uppercase text-sm">
-            Contact Us
-          </p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.1]">
-            Get in Touch
-            <br />
-            With Our Team
+      {/* Page Header */}
+      <div className="relative bg-[#0A0806] border-b border-white/[0.06] py-14 md:py-20 overflow-hidden">
+        <div
+          className="absolute right-[-2%] top-1/2 -translate-y-1/2 pointer-events-none select-none opacity-[0.025] leading-none"
+          style={{ fontFamily: "'Syne', sans-serif", fontSize: "18vw", fontWeight: 900, color: "#fff" }}
+        >
+          CONTACT
+        </div>
+        <div className="max-w-[1300px] mx-auto px-6 md:px-10 w-full relative z-10">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-7 h-px bg-[#C4A378]" />
+            <span className="text-[10px] text-[#C4A378] tracking-[0.28em] uppercase" style={{ fontFamily: "monospace" }}>
+              Reach Out
+            </span>
+          </div>
+          <h1
+            className="text-[40px] md:text-[60px] font-black leading-none tracking-[-0.025em] text-white"
+            style={{ fontFamily: "'Syne', sans-serif" }}
+          >
+            Get in{" "}
+            <span className="text-transparent" style={{ WebkitTextStroke: "1.5px #C4A378" }}>
+              Touch
+            </span>
           </h1>
-          <p className="text-xl text-sky-100/80 max-w-2xl leading-relaxed">
-            Have questions about our products or services? We are here to help and respond within 24 hours.
-          </p>
         </div>
-      </section>
+      </div>
 
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 -mt-28 relative z-10">
-            {[
-              {
-                icon: FiPhone,
-                title: "Call Us",
-                info: "+1 234 567 890",
-                sub: "Mon-Fri 9am-6pm",
-              },
-              {
-                icon: FiMail,
-                title: "Email Us",
-                info: "support@avelon_mfg_llc",
-                sub: "We reply within 24hrs",
-              },
-              {
-                icon: FiMapPin,
-                title: "Visit Us",
-                info: "123 Business Ave",
-                sub: "New York, NY 10001",
-              },
-              {
-                icon: FaWhatsapp,
-                title: "WhatsApp",
-                info: "+1 234 567 890",
-                sub: "Quick responses",
-              },
-            ].map((item, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-sky-200 transition-all">
-                <div className="w-12 h-12 bg-sky-50 rounded-lg flex items-center justify-center mb-4">
-                  <item.icon className="w-6 h-6 text-sky-500" />
+      <div className="max-w-[1300px] mx-auto px-6 md:px-10 w-full py-16 md:py-20">
+        <div className="grid lg:grid-cols-[1fr_420px] gap-12 lg:gap-16 items-start">
+
+          {/* LEFT: Form */}
+          <div>
+            <div className="flex flex-col gap-2 mb-10">
+              <h2
+                className="text-[24px] md:text-[30px] font-black text-white leading-tight"
+                style={{ fontFamily: "'Syne', sans-serif" }}
+              >
+                Send us a Message
+              </h2>
+              <p className="text-[13px] text-white/30 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Fill in the form and we will get back to you within 24 hours.
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              {/* Name + Email */}
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label className={labelClass} style={{ fontFamily: "monospace" }}>
+                    Full Name <span className="text-[#C4A378]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="John Doe"
+                    className={inputClass}
+                    style={{ fontFamily: "'DM Sans', sans-serif" }}
+                    required
+                  />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
-                <p className="text-gray-900 font-medium">{item.info}</p>
-                <p className="text-gray-500 text-sm">{item.sub}</p>
+                <div>
+                  <label className={labelClass} style={{ fontFamily: "monospace" }}>
+                    Email Address <span className="text-[#C4A378]">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="john@example.com"
+                    className={inputClass}
+                    style={{ fontFamily: "'DM Sans', sans-serif" }}
+                    required
+                  />
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <section className="py-16 lg:py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid lg:grid-cols-5 gap-12">
-            <div className="lg:col-span-3">
-              <div className="bg-white p-8 lg:p-10 rounded-2xl border border-gray-100 shadow-sm">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-sky-50 rounded-lg flex items-center justify-center">
-                    <FiMessageCircle className="w-5 h-5 text-sky-500" />
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-bold text-gray-900">Send us a Message</h2>
-                    <p className="text-gray-500 text-sm">Fill the form below and we will get back to you</p>
-                  </div>
+              {/* Phone + Subject */}
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label className={labelClass} style={{ fontFamily: "monospace" }}>Phone Number</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+1 234 567 890"
+                    className={inputClass}
+                    style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  />
                 </div>
-
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid md:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Full Name <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="John Doe"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none transition-all"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="john@example.com"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none transition-all"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="+1 234 567 890"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none transition-all"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                      <select 
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none transition-all bg-white"
-                      >
-                        <option value="">Select a topic</option>
-                        <option value="General Inquiry">General Inquiry</option>
-                        <option value="Product Question">Product Question</option>
-                        <option value="Order Support">Order Support</option>
-                        <option value="Bulk Order">Bulk Order</option>
-                        <option value="Partnership">Partnership</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Message <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows={5}
-                      placeholder="Tell us how we can help you..."
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none transition-all resize-none"
-                      required
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`w-full flex items-center justify-center gap-2 px-6 py-4 font-semibold rounded-lg transition-colors ${isSubmitting ? 'bg-gray-400 cursor-wait text-white' : 'bg-sky-500 hover:bg-sky-600 text-white'}`}
+                <div>
+                  <label className={labelClass} style={{ fontFamily: "monospace" }}>Subject</label>
+                  <select
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className={inputClass + " cursor-pointer"}
+                    style={{ fontFamily: "'DM Sans', sans-serif" }}
                   >
-                    <FiSend className="w-5 h-5" />
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </form>
+                    <option value="" className="bg-[#0E0C0A]">Select a topic</option>
+                    <option value="General Inquiry" className="bg-[#0E0C0A]">General Inquiry</option>
+                    <option value="Product Question" className="bg-[#0E0C0A]">Product Question</option>
+                    <option value="Order Support" className="bg-[#0E0C0A]">Order Support</option>
+                    <option value="Bulk Order" className="bg-[#0E0C0A]">Bulk Order</option>
+                    <option value="Partnership" className="bg-[#0E0C0A]">Partnership</option>
+                  </select>
+                </div>
               </div>
+
+              {/* Message */}
+              <div>
+                <label className={labelClass} style={{ fontFamily: "monospace" }}>
+                  Message <span className="text-[#C4A378]">*</span>
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={6}
+                  placeholder="Tell us how we can help you..."
+                  className={inputClass + " resize-none"}
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  required
+                />
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="group inline-flex items-center justify-center gap-3 bg-[#C4A378] hover:bg-white text-[#0E0C0A] text-[12px] font-bold tracking-[0.12em] uppercase px-8 py-4 transition-all duration-300 disabled:opacity-40 disabled:cursor-wait w-fit"
+                style={{ fontFamily: "'Syne', sans-serif" }}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+                <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+              </button>
+            </form>
+          </div>
+
+          {/* RIGHT: Info */}
+          <div className="flex flex-col gap-6 lg:sticky lg:top-28">
+
+            {/* Contact details */}
+            <div className="border border-white/[0.06] p-6 flex flex-col gap-6">
+              <p
+                className="text-[10px] text-[#C4A378]/50 tracking-[0.28em] uppercase"
+                style={{ fontFamily: "monospace" }}
+              >
+                Contact Info
+              </p>
+
+              {[
+                {
+                  label: "Phone",
+                  value: "(888) 680-1834",
+                  href: "tel:+18886801834",
+                },
+                {
+                  label: "Email",
+                  value: "sales@avelonmfg.com",
+                  href: "mailto:sales@avelonmfg.com",
+                },
+                {
+                  label: "Address",
+                  value: "429 Fourth Avenue Ste 300\nPittsburgh, PA 15219",
+                  href: null,
+                },
+              ].map((item) => (
+                <div key={item.label} className="flex flex-col gap-1">
+                  <span
+                    className="text-[10px] text-white/20 tracking-[0.2em] uppercase"
+                    style={{ fontFamily: "monospace" }}
+                  >
+                    {item.label}
+                  </span>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      className="text-[14px] font-bold text-white hover:text-[#C4A378] transition-colors duration-200"
+                      style={{ fontFamily: "'Syne', sans-serif" }}
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p
+                      className="text-[13px] text-white/50 leading-relaxed whitespace-pre-line"
+                      style={{ fontFamily: "'DM Sans', sans-serif" }}
+                    >
+                      {item.value}
+                    </p>
+                  )}
+                </div>
+              ))}
+
+              {/* Call CTA */}
+              <a
+                href="tel:+18886801834"
+                className="mt-2 inline-flex items-center justify-center gap-2 border border-[#C4A378]/30 hover:border-[#C4A378] hover:bg-[#C4A378]/10 text-[#C4A378] text-[11px] tracking-[0.15em] uppercase px-5 py-3 transition-all duration-200 w-full"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                Call Us Now
+              </a>
             </div>
 
-            <div className="lg:col-span-2 space-y-6">
-              <div className="bg-white p-6 rounded-xl border border-gray-100">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 bg-sky-50 rounded-lg flex items-center justify-center">
-                    <FiClock className="w-5 h-5 text-sky-500" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900">Business Hours</h3>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    { day: "Monday - Friday", time: "9:00 AM - 6:00 PM" },
-                    { day: "Saturday", time: "10:00 AM - 4:00 PM" },
-                    { day: "Sunday", time: "Closed" },
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex justify-between items-center py-2 border-b border-gray-50 last:border-0">
-                      <span className="text-gray-600">{item.day}</span>
-                      <span className="text-gray-900 font-medium text-sm">{item.time}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+        
 
-              <div className="bg-white p-6 rounded-xl border border-gray-100">
-                <h3 className="font-semibold text-gray-900 mb-4">Follow Us</h3>
-                <div className="flex gap-3">
-                  {socials.map((social, idx) => {
-                    const Icon = social.icon;
-                    return (
-                      <a
-                        key={idx}
-                        href={social.href}
-                        aria-label={social.label}
-                        className="w-11 h-11 bg-gray-50 hover:bg-sky-50 rounded-lg flex items-center justify-center text-gray-600 hover:text-sky-500 transition-colors"
-                      >
-                        <Icon className="w-5 h-5" />
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-sky-500 to-sky-600 p-6 rounded-xl text-white">
-                <h3 className="font-semibold mb-2">Need Quick Help?</h3>
-                <p className="text-sky-100 text-sm mb-4">
-                  Submit a product request and our team will get back to you with a quote.
-                </p>
-                <Link
-                  href="/request"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-sky-600 font-semibold rounded-lg hover:bg-sky-50 transition-colors text-sm"
-                >
-                  Submit Request
-                  <FiArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+            {/* Quick help CTA */}
+            <div className="border border-[#C4A378]/20 bg-[#C4A378]/[0.04] p-6 flex flex-col gap-3">
+              <p
+                className="text-[10px] text-[#C4A378]/50 tracking-[0.28em] uppercase"
+                style={{ fontFamily: "monospace" }}
+              >
+                Quick Help
+              </p>
+              <p className="text-[13px] text-white/40 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Need a quote fast? Submit a product request and we will respond with pricing.
+              </p>
+              <Link
+                href="/trade-form"
+                className="group inline-flex items-center gap-2 text-[#C4A378] text-[11px] tracking-[0.15em] uppercase border-b border-[#C4A378]/30 hover:border-[#C4A378] pb-0.5 transition-colors duration-200 w-fit"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                Apply for Trade Account
+                <ArrowUpRight className="size-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </Link>
             </div>
           </div>
         </div>
-      </section>
 
-      <section className="h-80 lg:h-96 bg-gray-200 relative">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976397304605!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1699999999999!5m2!1sen!2s"
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="grayscale hover:grayscale-0 transition-all duration-500"
-        />
-      </section>
+        {/* Map */}
+        <div className="mt-16 border border-white/[0.06] overflow-hidden h-72 md:h-96">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3036.4894853209097!2d-79.99657252358496!3d40.43911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8834f1568e5c4f35%3A0x1a8c6c2c1a1a1a1a!2s429%20Fourth%20Ave%2C%20Pittsburgh%2C%20PA%2015219!5e0!3m2!1sen!2sus!4v1699999999999!5m2!1sen!2sus"
+            width="100%"
+            height="100%"
+            style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
 
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Have More Questions?</h2>
-          <p className="text-gray-600 mb-6">
-            Check out our frequently asked questions or browse our product catalog.
+        {/* Bottom links */}
+        <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 border-t border-white/[0.06] pt-8">
+          <p
+            className="text-[10px] text-white/15 tracking-[0.2em] uppercase"
+            style={{ fontFamily: "monospace" }}
+          >
+            Need more info?
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex items-center gap-6">
             <Link
               href="/faq"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 text-gray-900 font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+              className="text-[11px] text-white/30 hover:text-[#C4A378] tracking-[0.15em] uppercase transition-colors duration-200 group inline-flex items-center gap-1.5"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
-              View FAQs
+              View FAQs <ArrowUpRight className="size-3" />
             </Link>
             <Link
               href="/product"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-sky-500 text-white font-semibold rounded-lg hover:bg-sky-600 transition-colors"
+              className="text-[11px] text-white/30 hover:text-[#C4A378] tracking-[0.15em] uppercase transition-colors duration-200 group inline-flex items-center gap-1.5"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
-              Browse Products
-              <FiArrowRight className="w-4 h-4" />
+              Browse Products <ArrowUpRight className="size-3" />
             </Link>
           </div>
         </div>
-      </section>
-    </div>)}
+      </div>
+    </div>
+  );
+}

@@ -1,81 +1,31 @@
 import React from "react";
-import Carousel from "./_components/Crausal"; // Assuming Carousel component
-import WholesaleInquiry from "./_components/Hero"; 
-import SectionHeader from "@/components/Layout/GridHeader";
-import CategoryGrid from "@/components/Layout/GridCircle";
-import ProductGrid from "@/components/Layout/GridRoudSquare";
-import PromoBanners from "@/components/Layout/Grid2Images";
-import { CATEGORIES, PRODUCTS, PRODUCTS_LIST } from "@/constants";
+import Hero from "./_components/Hero";
+import Features from "./_components/Features";
+import CategoriesSection from "@/components/Layout/GridCircle";
+import ProductsSection from "@/components/Layout/GridHeader";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white font-sans text-gray-900 pb-24">
-      
-      {/* 1. Hero / Carousel Section */}
-      <section className="pt-6 pb-12">
-        <div className="max-w-[1400px] mx-auto px-6 w-full">
-          <div className="rounded-[2rem] overflow-hidden shadow-sm border border-gray-100">
-            <Carousel />
-          </div>
-        </div>
+    <main className="min-h-screen bg-[#FFFDFB] font-body text-[#1C1917]">
+      {/* 1. Hero Section */}
+      <section>
+        <Hero />
       </section>
 
-      {/* Content Flow */}
-      <div className="flex flex-col gap-8">
-        
-        {/* 2. Distribution Categories */}
-        <section className="max-w-[1300px] mx-auto px-6 w-full">
-          <SectionHeader
-            title="Browse our"
-            highlight="Distribution Categories"
-            link="/product"
-          />
-          <div className="mt-10">
-            <CategoryGrid categories={CATEGORIES} />
-          </div>
-        </section>
+      {/* Main Content */}
+      <div className="flex flex-col gap-16  ">
+        {/* 2. Categories */}
+       <CategoriesSection />
 
-        {/* 3. Primary Inventory / Featured Distribution */}
-        <section className="max-w-[1300px] mx-auto px-6 w-full">
-          <SectionHeader
-            title="Featured"
-            highlight="Product Inventory"
-            link="/product"
-          />
-          <div className="mt-10 md:block hidden">
-            <ProductGrid products={PRODUCTS_LIST} limit={5} />
-          </div>
-          <div className="mt-10 md:hidden block ">
-            <ProductGrid products={PRODUCTS_LIST} limit={6} />
-          </div>
-        </section>
+        {/* 3. Featured Products */}
+        <ProductsSection />
 
-        {/* 4. Strategic Banners */}
-        <section className="max-w-[1400px] mx-auto px-6 w-full">
-          <div className="rounded-[2.5rem] overflow-hidden">
-             <PromoBanners />
-          </div>
-        </section>
+      
 
-        {/* 5. Partnership & Wholesale Process (The Features component) */}
-        {/* We keep this full width as it acts as a transition to the Trade Form */}
-        <section className="w-full bg-gray-50/50 py-4">
-          <WholesaleInquiry />
+        {/* 5. Wholesale Inquiry (Full Width) */}
+        <section className="w-full">
+          <Features />
         </section>
-
-        {/* 6. Global Sourcing / Full Catalog */}
-        <section className="max-w-[1300px] mx-auto px-6 w-full">
-          <SectionHeader
-            title="Global"
-            highlight="Sourcing Portfolio"
-            link="/product"
-          />
-          <div className="mt-10 md:hidden">
-            <ProductGrid products={PRODUCTS} limit={20} />
-          </div>
-          
-        </section>
-
       </div>
     </main>
   );

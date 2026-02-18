@@ -5,7 +5,7 @@ import React from 'react'
 function Logo() {
   return (
     <Link href={"/"}>
-        <Image src={"/logo.png"} height={200} width={300} alt='logo' className='object-cover size-full' />
+        <Image src={"/logo.png"} height={200} width={300} alt='logo' className='object-contain size-full' />
     </Link>
   )
 }
